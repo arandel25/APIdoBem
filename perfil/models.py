@@ -1,5 +1,15 @@
 from django.db import models
 from django.core.validators import MinLengthValidator, MaxLengthValidator
+from django.utils.translation import gettext_lazy as _
+
+class UFS(models.TextChoices):
+
+        SC = 'SC', _('Santa Catarina')
+        RS = 'RS', _('Rio Grande do Sul')
+        SP = 'SP', _('São Paulo')
+        MG = 'MG', _('Minas Gerais')
+        RJ = 'RJ', _('Rio de Janeiro')
+        RN = 'RN', _('Rio Grande do Norte')
 
 class PerfilModel(models.Model):
     nome_instituicao = models.CharField(
@@ -48,6 +58,7 @@ class PerfilModel(models.Model):
     uf = models.CharField(
         db_column="UF",
         max_length=2,
+        choices=UFS.choices,
         null=True,
     )
 
@@ -90,7 +101,6 @@ class PerfilModel(models.Model):
         verbose_name = "perfil"
 
         verbose_name_plural = "perfis"
-
 
     def __str__(self) -> str:
 
