@@ -1,16 +1,14 @@
-import email
-from wsgiref.validate import validator
+from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.core.validators import EmailValidator
+from perfil.models import PerfilModel
 
-class UsuarioModel(models.Model):
-    email = models.CharField(
-        db_column="EMAIL",
-        max_length=60,
-        validator = EmailValidator()
+class UsuarioModel(AbstractUser):
+    perfil = models.OneToOneField(
+        PerfilModel,
+        models.CASCADE,
+        null=True
     )
 
-    senha = models.CharField(
-        db_column="SENHA",
-        max_length=12,
+    username = models.EmailField(
+        unique=True
     )

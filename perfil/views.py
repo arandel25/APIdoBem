@@ -1,4 +1,3 @@
-from crypt import methods
 from rest_framework.viewsets import ModelViewSet
 from perfil.models import PerfilModel
 from perfil.serializers import PerfilCreateSerializer, PerfilSerializer
